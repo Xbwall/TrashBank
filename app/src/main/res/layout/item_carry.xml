@@ -23,6 +23,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/content"
                     android:layout_width="297dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"

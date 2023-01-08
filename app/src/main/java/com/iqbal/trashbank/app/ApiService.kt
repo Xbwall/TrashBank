@@ -1,12 +1,10 @@
 package com.iqbal.trashbank.app
 
 import com.iqbal.trashbank.login.ResponseLogin
+import com.iqbal.trashbank.model.ResponseDelJP
 import com.iqbal.trashbank.model.ResponseListJP
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -18,4 +16,16 @@ interface ApiService {
 
     @GET("listJP")
     fun listJP(): Call<ArrayList<ResponseListJP>>
+
+    @DELETE("deleteJP/{id}")
+    fun deleteJP(
+        @Path("id") id:Int
+    ):Call<ResponseDelJP>
+
+    @FormUrlEncoded
+    @POST("insertJP")
+    fun insertJP(
+        @Field("tanggal") tgl:String,
+        @Field("id_pengurus") id_pengurus:Int
+    ):Call<ResponseDelJP>
 }

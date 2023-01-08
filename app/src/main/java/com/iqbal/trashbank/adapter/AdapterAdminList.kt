@@ -20,7 +20,8 @@ class AdapterAdminList(val list:ArrayList<ResponseListJP>):RecyclerView.Adapter<
         fun bind(role: ResponseListJP){
             with(itemView){
                 itm_tanggaltransaksi.text = role.tanggal
-                itemView.setOnClickListener { onItemClickCallback?.OnCLick(role) }
+                itemView.content.setOnClickListener { onItemClickCallback?.OnCLick(role) }
+                itemView.btn_delete.setOnClickListener { onItemClickCallback?.IconDeleteClick(role) }
             }
         }
     }
@@ -38,6 +39,10 @@ class AdapterAdminList(val list:ArrayList<ResponseListJP>):RecyclerView.Adapter<
 
     interface OnAdapterListener{
         fun OnCLick(list : ResponseListJP)
+
+        fun IconDeleteClick(list : ResponseListJP)
+
     }
+
 
 }

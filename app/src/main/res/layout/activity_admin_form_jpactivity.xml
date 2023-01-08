@@ -54,10 +54,10 @@
                 android:textSize="23sp"
                 android:textColor="@color/blue"
                 android:layout_margin="10dp"
-                android:text="Id Jadwal Pengambilan"/>
+                android:text="Id Pengurus"/>
 
             <EditText
-                android:id="@+id/edt_idkeljadwal"
+                android:id="@+id/edt_idPengurus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -71,8 +71,12 @@
                 android:layout_margin="10dp"
                 android:textSize="23sp"
                 android:text="Tanggal Jadwal Pengambilan"/>
-
-            <EditText
+            <TextView
+                android:id="@+id/datedPick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2022-11-11"/>
+            <DatePicker
                 android:id="@+id/edt_tanggaljadwal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
