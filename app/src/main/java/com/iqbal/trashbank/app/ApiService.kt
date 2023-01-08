@@ -28,4 +28,12 @@ interface ApiService {
         @Field("tanggal") tgl:String,
         @Field("id_pengurus") id_pengurus:Int
     ):Call<ResponseDelJP>
+
+    @FormUrlEncoded
+    @POST("updateJP")
+    fun updateJP(
+        @Field("id") id_jadwal:Int,
+        @Field("tanggal") tgl:String,
+        @Field("id_pengurus") id_pengurus:Int
+    ):Call<ResponseDelJP>
 }

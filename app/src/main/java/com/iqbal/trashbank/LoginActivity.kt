@@ -3,6 +3,7 @@ package com.iqbal.trashbank
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.iqbal.trashbank.admin.HomeAdminActivity
 import com.iqbal.trashbank.app.ApiConfig
@@ -30,22 +31,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // cek apakah sudah login sebelumnya
-        if(s.getStatus()){
-            val role = s.getString(s.id_role)
-            if(role == 1.toString()){
-                intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-                Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah,"+s.getString(s.role_name)+", "+s.getString(s.name), Toast.LENGTH_SHORT).show()
-            }else{
-                intent = Intent(this@LoginActivity, HomeUserActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-                Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah"+s.getString(s.role_name)+", "+s.getString(s.name), Toast.LENGTH_SHORT).show()
-            }
-        }
+
     }
 
     fun login(){
@@ -69,17 +55,17 @@ class LoginActivity : AppCompatActivity() {
 
                     if (respon.Success == 1 ){
                         // simpan session login
-                        s.setStatusLogin(true)
-                        s.setString(s.id_user, respon.id_user.toString())
-                        s.setString(s.id_role, respon.id_role.toString())
-                        s.setString(s.role_name, respon.role_name.toString())
-                        s.setString(s.nohp, respon.nohp.toString())
-                        s.setString(s.name, respon.nama.toString())
+                        //s.setStatusLogin(true)
 
-                        val role = s.getString(s.id_role)
-                        if(role == 1.toString()){
+                        //val merge = respon.id_user.toString()+","+s.getString(s.id_user)+", "+s.getString(s.id_role)
+                        //Log.e("LOGIN",merge)
+
+                        val role = respon.id_role
+                        if(role == 1){
                             intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.putExtra("id_user",respon.id_user.toString())
+                            intent.putExtra("nama",respon.nama)
                             startActivity(intent)
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah,"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()
                         }else{

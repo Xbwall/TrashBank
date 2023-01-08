@@ -22,10 +22,14 @@ class AdminListJadwalActivity : AppCompatActivity() {
 
     private val list = ArrayList<ResponseListJP>()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list_jadwal)
 
+        val id_user = intent.extras?.getString("iduser")
+        Log.d("HOME","id_user = "+id_user)
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -41,8 +45,11 @@ class AdminListJadwalActivity : AppCompatActivity() {
                 adp.setOnItemClick(object :AdapterAdminList.OnAdapterListener{
                     //content Click
                     override fun OnCLick(list: ResponseListJP) {
-                        Toast.makeText(this@AdminListJadwalActivity, list.tanggal, Toast.LENGTH_SHORT).show()
-                        Log.d("HSL","TESTING")
+                        val intent = Intent(this@AdminListJadwalActivity,AdminFormJPActivity::class.java)
+                        intent.putExtra("id_jadwalpengambilan",list.id.toString())
+                        intent.putExtra("tgl_jadwalpengambilan",list.tanggal)
+                        intent.putExtra("iduser",id_user)
+                        startActivity(intent)
                     }
                     //icon delete klick
                     override fun IconDeleteClick(list: ResponseListJP) {
@@ -58,7 +65,9 @@ class AdminListJadwalActivity : AppCompatActivity() {
         })
 
         btn_insertJP.setOnClickListener {
-            startActivity(Intent(this, AdminFormJPActivity::class.java))
+            val intent = Intent(this, AdminFormJPActivity::class.java)
+            intent.putExtra("iduser",id_user)
+            startActivity(intent)
         }
     }
 

@@ -18,12 +18,22 @@ class HomeAdminActivity : AppCompatActivity() {
 
         s = SharedPref(this)
 
+        if(s.getStatus()){
+
+        }
+
+        val id_user = intent.extras?.getString("id_user")
+        val nama = intent.extras?.getString("nama")
+
+        welcome.text = "Welcome, "+nama
+
         logout.setOnClickListener {
             logout()
         }
 
         crd_listjadwalpengambilan.setOnClickListener {
             val intent_jp = Intent(this@HomeAdminActivity, AdminListJadwalActivity::class.java)
+            intent_jp.putExtra("iduser",id_user.toString())
             startActivity(intent_jp)
         }
     }

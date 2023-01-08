@@ -3,11 +3,12 @@ package com.iqbal.trashbank.helper
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import com.iqbal.trashbank.login.ResponseLogin
 
 class SharedPref(activity: Activity) {
-    val login = "login"
-    val mypref = "MAIN_PREF"
-    val sp: SharedPreferences
+
+    val mypref = "login"
+    val sp:SharedPreferences
 
     val name = "name"
     val id_user = "0"
@@ -20,11 +21,11 @@ class SharedPref(activity: Activity) {
     }
 
     fun setStatusLogin(status:Boolean){
-        sp.edit().putBoolean(login,status).apply()
+        sp.edit().putBoolean(mypref,status).apply()
     }
 
     fun getStatus():Boolean{
-        return sp.getBoolean(login, false)
+        return sp.getBoolean(mypref, false)
     }
 
     fun setString(key: String, vlue: String){

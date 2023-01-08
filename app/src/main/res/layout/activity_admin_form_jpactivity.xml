@@ -23,6 +23,7 @@
         tools:layout_editor_absoluteY="41dp" />
 
     <TextView
+        android:id="@+id/idJP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="JADWAL PENGAMBILAN"
@@ -48,21 +49,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="23sp"
-                android:textColor="@color/blue"
-                android:layout_margin="10dp"
-                android:text="Id Pengurus"/>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="23sp"-->
+<!--                android:textColor="@color/blue"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:text="Id Pengurus"/>-->
 
-            <EditText
-                android:id="@+id/edt_idPengurus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint="XX"
-                android:minHeight="48dp" />
+<!--            <EditText-->
+<!--                android:id="@+id/edt_idPengurus"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:hint="XX"-->
+<!--                android:minHeight="48dp" />-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -71,17 +72,21 @@
                 android:layout_margin="10dp"
                 android:textSize="23sp"
                 android:text="Tanggal Jadwal Pengambilan"/>
+
             <TextView
                 android:id="@+id/datedPick"
-                android:layout_width="match_parent"
+                android:layout_width="339dp"
                 android:layout_height="wrap_content"
-                android:text="2022-11-11"/>
-            <DatePicker
-                android:id="@+id/edt_tanggaljadwal"
-                android:layout_width="match_parent"
+                android:text="2022-11-11"
+                android:textSize="23sp" />
+
+            <Button
+                android:id="@+id/ChooseDate"
+                android:layout_width="162dp"
                 android:layout_height="wrap_content"
-                android:hint="YYYY-MM-DD"
-                android:minHeight="48dp" />
+                android:text="Pilih Tanggal"
+                android:layout_gravity="center"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,18 +95,14 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <Button
-                    android:id="@+id/btn_inputJP"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_save"
+                    android:layout_width="201dp"
                     android:layout_height="wrap_content"
-                    android:text="Input"/>
-                <Button
-                    android:id="@+id/btn_updateJP"
                     android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"/>
+                    android:text="Save Data" />
+
 
             </LinearLayout>
             <TextView
