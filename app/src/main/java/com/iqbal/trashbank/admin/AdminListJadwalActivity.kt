@@ -7,13 +7,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iqbal.trashbank.R
-import com.iqbal.trashbank.adapter.AdapterAdminList
+import com.iqbal.trashbank.adapter.AdapterAdminListJP
 import com.iqbal.trashbank.app.ApiConfig
-import com.iqbal.trashbank.login.ResponseLogin
 import com.iqbal.trashbank.model.ResponseDelJP
 import com.iqbal.trashbank.model.ResponseListJP
 import kotlinx.android.synthetic.main.activity_admin_list_jadwal.*
-import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,8 +19,6 @@ import retrofit2.Response
 class AdminListJadwalActivity : AppCompatActivity() {
 
     private val list = ArrayList<ResponseListJP>()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +36,9 @@ class AdminListJadwalActivity : AppCompatActivity() {
             ) {
                 val listResponse = response.body()
                 listResponse?.let { list.addAll(it) }
-                val adp = AdapterAdminList(list)
+                val adp = AdapterAdminListJP(list)
                 recyclerview.adapter = adp
-                adp.setOnItemClick(object :AdapterAdminList.OnAdapterListener{
+                adp.setOnItemClick(object :AdapterAdminListJP.OnAdapterListener{
                     //content Click
                     override fun OnCLick(list: ResponseListJP) {
                         val intent = Intent(this@AdminListJadwalActivity,AdminFormJPActivity::class.java)

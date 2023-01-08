@@ -3,6 +3,7 @@ package com.iqbal.trashbank.app
 import com.iqbal.trashbank.login.ResponseLogin
 import com.iqbal.trashbank.model.ResponseDelJP
 import com.iqbal.trashbank.model.ResponseListJP
+import com.iqbal.trashbank.model.ResponseListWG
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -36,4 +37,7 @@ interface ApiService {
         @Field("tanggal") tgl:String,
         @Field("id_pengurus") id_pengurus:Int
     ):Call<ResponseDelJP>
+
+    @GET("listWG")
+    fun listWG():Call<ArrayList<ResponseListWG>>
 }

@@ -18,10 +18,6 @@ class HomeAdminActivity : AppCompatActivity() {
 
         s = SharedPref(this)
 
-        if(s.getStatus()){
-
-        }
-
         val id_user = intent.extras?.getString("id_user")
         val nama = intent.extras?.getString("nama")
 
@@ -35,6 +31,12 @@ class HomeAdminActivity : AppCompatActivity() {
             val intent_jp = Intent(this@HomeAdminActivity, AdminListJadwalActivity::class.java)
             intent_jp.putExtra("iduser",id_user.toString())
             startActivity(intent_jp)
+        }
+
+        crd_transaksi.setOnClickListener {
+            val intent_tr = Intent(this@HomeAdminActivity, AdminListTransaksiActivity::class.java)
+            intent_tr.putExtra("iduser",id_user.toString())
+            startActivity(intent_tr)
         }
     }
 

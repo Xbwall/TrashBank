@@ -8,7 +8,7 @@ import com.iqbal.trashbank.R
 import com.iqbal.trashbank.model.ResponseListJP
 import kotlinx.android.synthetic.main.item_carry.view.*
 
-class AdapterAdminList(val list:ArrayList<ResponseListJP>):RecyclerView.Adapter<AdapterAdminList.ViewHolder>() {
+class AdapterAdminListJP(val list: ArrayList<ResponseListJP>):RecyclerView.Adapter<AdapterAdminListJP.ViewHolder>() {
 
     private var onItemClickCallback: OnAdapterListener? = null
 
@@ -19,7 +19,7 @@ class AdapterAdminList(val list:ArrayList<ResponseListJP>):RecyclerView.Adapter<
     inner class ViewHolder(itemview : View):RecyclerView.ViewHolder(itemview) {
         fun bind(role: ResponseListJP){
             with(itemView){
-                itm_tanggaltransaksi.text = role.tanggal
+                itemView.itm_tanggaltransaksi.text = role.tanggal
                 itemView.content.setOnClickListener { onItemClickCallback?.OnCLick(role) }
                 itemView.btn_delete.setOnClickListener { onItemClickCallback?.IconDeleteClick(role) }
             }
