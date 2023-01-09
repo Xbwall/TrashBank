@@ -40,4 +40,21 @@ interface ApiService {
 
     @GET("listWG")
     fun listWG():Call<ArrayList<ResponseListWG>>
+
+    @FormUrlEncoded
+    @POST("insertTR")
+    fun insertTR(
+        @Field("nominal") nominal:String,
+        @Field("id_masyarakat") id_masyarakat:Int,
+        @Field("id_jadwal_pengambilan") id_jadwal_pengambilan:Int
+    ):Call<ResponseDelJP>
+
+    @FormUrlEncoded
+    @POST("updateTR")
+    fun updateTR(
+        @Field("id_transaksi") id_transaksi:Int,
+        @Field("nominal") nominal:String,
+        @Field("id_masyarakat") id_masyarakat:Int,
+        @Field("id_jadwal_pengambilan") id_jadwal_pengambilan:Int
+    ):Call<ResponseDelJP>
 }
