@@ -15,6 +15,7 @@ interface ApiService {
         @Field("password") password: String
     ): Call<ResponseLogin>
 
+    //JADWAL PENGAMBILAN
     @GET("listJP")
     fun listJP(): Call<ArrayList<ResponseListJP>>
 
@@ -40,4 +41,5 @@ interface ApiService {
 
     @GET("listWG")
     fun listWG():Call<ArrayList<ResponseListWG>>
+
 }

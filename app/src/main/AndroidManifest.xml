@@ -17,6 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".user.UserListJadwalActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".admin.AdminFormTransaksiActivity"
             android:exported="false">
             <meta-data
@@ -65,6 +72,7 @@
                 android:value="" />
         </activity>
         <activity android:name=".admin.HomeAdminActivity" />
+        <activity android:name="com.iqbal.trashbank.user.UserListJadwalActivity" />
     </application>
 
 </manifest>

@@ -63,9 +63,7 @@ class AdminFormJPActivity : AppCompatActivity() {
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH)).show()
             }
-
         })
-
 
         btn_save.setOnClickListener {
             if(id_jp == null){
@@ -73,9 +71,7 @@ class AdminFormJPActivity : AppCompatActivity() {
             }else{
                 updateAPI(datedPick.text.toString(),id_user.toString(),id_jp.toString())
             }
-
         }
-
         listJP.setOnClickListener {
             startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
             finish()
@@ -93,12 +89,9 @@ class AdminFormJPActivity : AppCompatActivity() {
                     finish()
                     Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
                 }
-
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
-
                     Log.e("ERR",t.message.toString())
                 }
-
             })
     }
 
@@ -113,12 +106,9 @@ class AdminFormJPActivity : AppCompatActivity() {
                     finish()
                     Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
                 }
-
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
-
                     Log.e("ERR",t.message.toString())
                 }
-
             })
     }
 
