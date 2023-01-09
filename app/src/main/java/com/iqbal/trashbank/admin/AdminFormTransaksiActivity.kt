@@ -35,10 +35,10 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
     private var id_wg:Int = 0
 
     //variabel tampung data get untuk update
-    val id_trnsksi = intent.extras?.getString("id_transaksi")
-    val nominal = intent.extras?.getString("nominal")
-    val id_masyarakat = intent.extras?.getString("id_masyarakat")
-    val id_jadwal_pengambilan = intent.extras?.getString("id_jadwal_pengambilan")
+//    val id_trnsksi = intent.extras?.getString("id_transaksi")
+//    val nominal = intent.extras?.getString("nominal")
+//    val id_masyarakat = intent.extras?.getString("id_masyarakat")
+//    val id_jadwal_pengambilan = intent.extras?.getString("id_jadwal_pengambilan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,17 +47,13 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
         initSpinnerJadwal()
         initSpinnerWarga()
 
-        if(id_trnsksi !== null){
-            spinnerJadwal.setSelection(getIndex(listIdJP,id_jadwal_pengambilan!!.toInt()))
-            spinnerPenduduk.setSelection(getIndex(listIdWarga,id_masyarakat!!.toInt()))
-        }
+//        if(id_trnsksi !== null){
+//            spinnerJadwal.setSelection(getIndex(listIdJP,id_jadwal_pengambilan!!.toInt()))
+//            spinnerPenduduk.setSelection(getIndex(listIdWarga,id_masyarakat!!.toInt()))
+//        }
 
         btn_save.setOnClickListener {
-            if(id_trnsksi == null){
-                insert(id_jp,id_wg,edt_nominal.text.toString())
-            }else{
-                update(id_trnsksi!!.toInt(),id_jp,id_wg,edt_nominal.text.toString())
-            }
+            insert(id_jp,id_wg,edt_nominal.text.toString())
         }
     }
 

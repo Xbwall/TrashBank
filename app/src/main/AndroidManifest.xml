@@ -72,7 +72,6 @@
                 android:value="" />
         </activity>
         <activity android:name=".admin.HomeAdminActivity" />
-        <activity android:name="com.iqbal.trashbank.user.UserListJadwalActivity" />
     </application>
 
 </manifest>
