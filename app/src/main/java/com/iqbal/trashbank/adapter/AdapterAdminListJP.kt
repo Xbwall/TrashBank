@@ -8,7 +8,8 @@ import com.iqbal.trashbank.R
 import com.iqbal.trashbank.model.ResponseListJP
 import kotlinx.android.synthetic.main.item_carry.view.*
 
-class AdapterAdminListJP(val list: ArrayList<ResponseListJP>):RecyclerView.Adapter<AdapterAdminListJP.ViewHolder>() {
+class AdapterAdminListJP(val list: ArrayList<ResponseListJP>)
+    :RecyclerView.Adapter<AdapterAdminListJP.ViewHolder>() {
 
     private var onItemClickCallback: OnAdapterListener? = null
 

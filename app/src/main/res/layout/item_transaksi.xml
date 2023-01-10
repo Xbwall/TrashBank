@@ -23,7 +23,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/content"
+                    android:id="@+id/contentTR"
                     android:layout_width="297dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
@@ -31,18 +31,35 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvText"
+                        android:id="@+id/itm_namaTR"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Content"
+                        android:text="nama"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/itm_nominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Nominal"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/itm_tanggaltransaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Tanggal_transaksi"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
 
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/btn_delete"
+                    android:id="@+id/btn_deleteTR"
                     android:layout_gravity="center"
                     android:layout_width="50dp"
                     android:layout_height="54dp"

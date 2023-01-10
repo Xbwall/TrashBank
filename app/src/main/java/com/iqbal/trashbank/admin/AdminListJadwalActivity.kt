@@ -26,6 +26,13 @@ class AdminListJadwalActivity : AppCompatActivity() {
 
         val id_user = intent.extras?.getString("iduser")
         Log.d("HOME","id_user = "+id_user)
+
+        btn_insertJP.setOnClickListener {
+            val intent = Intent(this, AdminFormJPActivity::class.java)
+            intent.putExtra("iduser",id_user)
+            startActivity(intent)
+        }
+
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -57,14 +64,9 @@ class AdminListJadwalActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ArrayList<ResponseListJP>>, t: Throwable) {
                 Log.e("ERR",t.message.toString())
             }
-
         })
 
-        btn_insertJP.setOnClickListener {
-            val intent = Intent(this, AdminFormJPActivity::class.java)
-            intent.putExtra("iduser",id_user)
-            startActivity(intent)
-        }
+
     }
 
     fun hitDeleteJP(id:Int){
@@ -83,7 +85,6 @@ class AdminListJadwalActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                     Log.e("ERR",t.message.toString())
                 }
-
             })
     }
 }

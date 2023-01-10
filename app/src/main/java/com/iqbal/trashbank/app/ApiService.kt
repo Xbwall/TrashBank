@@ -1,9 +1,7 @@
 package com.iqbal.trashbank.app
 
 import com.iqbal.trashbank.login.ResponseLogin
-import com.iqbal.trashbank.model.ResponseDelJP
-import com.iqbal.trashbank.model.ResponseListJP
-import com.iqbal.trashbank.model.ResponseListWG
+import com.iqbal.trashbank.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -40,6 +38,14 @@ interface ApiService {
 
     @GET("listWG")
     fun listWG():Call<ArrayList<ResponseListWG>>
+
+    @GET("listTR")
+    fun ListTR():Call<ArrayList<ResponseListTR>>
+
+    @DELETE("deleteTR/{id}")
+    fun deleteTR(
+        @Path("id") id:Int
+    ):Call<ResponseDelTR>
 
     @FormUrlEncoded
     @POST("insertTR")
