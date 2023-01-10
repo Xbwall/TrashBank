@@ -2,6 +2,7 @@ package com.iqbal.trashbank.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iqbal.trashbank.R
 import com.iqbal.trashbank.adapter.AdapterUserListJP
@@ -38,7 +39,7 @@ class UserListTransaksiActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ArrayList<ResponseListTR>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("ERR",t.message.toString())
             }
 
         })
