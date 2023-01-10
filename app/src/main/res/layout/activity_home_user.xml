@@ -28,6 +28,7 @@
         android:columnCount="1">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/crd_Riwayattransaksi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"

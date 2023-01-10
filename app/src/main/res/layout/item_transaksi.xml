@@ -36,6 +36,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="nama"
+                        android:layout_margin="5dp"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                     <TextView
@@ -44,13 +45,15 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Nominal"
-                        android:textColor="@color/black"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/blue"
                         android:textSize="18sp" />
                     <TextView
                         android:id="@+id/itm_tanggaltransaksi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_margin="5dp"
                         android:text="Tanggal_transaksi"
                         android:textColor="@color/black"
                         android:textSize="20sp" />

@@ -14,5 +14,9 @@ class HomeUserActivity : AppCompatActivity() {
         crd_jdwluser.setOnClickListener({
             startActivity(Intent(this, UserListJadwalActivity::class.java))
         })
+
+        crd_Riwayattransaksi.setOnClickListener({
+            startActivity(Intent(this, UserListTransaksiActivity::class.java))
+        })
     }
 }

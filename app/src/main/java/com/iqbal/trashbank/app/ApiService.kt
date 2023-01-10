@@ -6,6 +6,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+
+    //LOGIN
     @FormUrlEncoded
     @POST("login")
     fun login(
@@ -13,6 +15,7 @@ interface ApiService {
         @Field("password") password: String
     ): Call<ResponseLogin>
 
+    //JADWAL PENGAMBILAN
     @GET("listJP")
     fun listJP(): Call<ArrayList<ResponseListJP>>
 
@@ -39,6 +42,7 @@ interface ApiService {
     @GET("listWG")
     fun listWG():Call<ArrayList<ResponseListWG>>
 
+    //TRANSAKSI
     @GET("listTR")
     fun ListTR():Call<ArrayList<ResponseListTR>>
 
