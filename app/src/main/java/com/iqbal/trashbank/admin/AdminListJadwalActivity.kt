@@ -25,13 +25,18 @@ class AdminListJadwalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin_list_jadwal)
 
         val id_user = intent.extras?.getString("iduser")
-        Log.d("HOME","id_user = "+id_user)
 
         btn_insertJP.setOnClickListener {
             val intent = Intent(this, AdminFormJPActivity::class.java)
             intent.putExtra("iduser",id_user)
             startActivity(intent)
         }
+
+        loadList(id_user.toString())
+
+    }
+
+    fun loadList(idusr:String){
 
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(this)
@@ -42,6 +47,8 @@ class AdminListJadwalActivity : AppCompatActivity() {
                 response: Response<ArrayList<ResponseListJP>>
             ) {
                 val listResponse = response.body()
+                list.clear()
+                recyclerview.adapter?.notifyDataSetChanged()
                 listResponse?.let { list.addAll(it) }
                 val adp = AdapterAdminListJP(list)
                 recyclerview.adapter = adp
@@ -51,12 +58,12 @@ class AdminListJadwalActivity : AppCompatActivity() {
                         val intent = Intent(this@AdminListJadwalActivity,AdminFormJPActivity::class.java)
                         intent.putExtra("id_jadwalpengambilan",list.id.toString())
                         intent.putExtra("tgl_jadwalpengambilan",list.tanggal)
-                        intent.putExtra("iduser",id_user)
+                        intent.putExtra("iduser",idusr)
                         startActivity(intent)
                     }
                     //icon delete klick
                     override fun IconDeleteClick(list: ResponseListJP) {
-                        hitDeleteJP(list.id)
+                        hitDeleteJP(list.id,idusr)
                     }
                 })
             }
@@ -65,19 +72,18 @@ class AdminListJadwalActivity : AppCompatActivity() {
                 Log.e("ERR",t.message.toString())
             }
         })
-
-
     }
 
-    fun hitDeleteJP(id:Int){
+    fun hitDeleteJP(id:Int,idusr:String){
         ApiConfig.instance.deleteJP(id)
             .enqueue(object : Callback<ResponseDelJP>
             {
                 override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>)
                 {
                     val respon = response.body()!!
-                    startActivity(Intent(this@AdminListJadwalActivity,AdminListJadwalActivity::class.java))
-                    finish()
+                    loadList(idusr)
+//                    startActivity(Intent(this@AdminListJadwalActivity,AdminListJadwalActivity::class.java))
+//                    finish()
                     Toast.makeText(this@AdminListJadwalActivity, "Telah dihapus", Toast.LENGTH_SHORT).show()
                     Log.d("HSL",respon.Message.toString())
                 }
