@@ -1,5 +1,6 @@
 package com.iqbal.trashbank.admin
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,12 @@ class AdminListTransaksiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list_transaksi)
 
+        val loading = ProgressDialog(this)
+
+        loading.setMessage("Loading...")
+        loading.setCancelable(false)
+        loading.show()
+
         val id_user = intent.extras?.getString("iduser")
         Log.d("HOME","id_user = "+id_user)
 
@@ -33,6 +40,12 @@ class AdminListTransaksiActivity : AppCompatActivity() {
             startActivity(Intent(this,AdminFormTransaksiActivity::class.java))
             intent.putExtra("iduser",id_user)
         }
+
+        loadlist(loading)
+
+    }
+
+    fun loadlist(loading:ProgressDialog){
         recyclerviewTR.setHasFixedSize(true)
         recyclerviewTR.layoutManager = LinearLayoutManager(this)
 
@@ -42,19 +55,24 @@ class AdminListTransaksiActivity : AppCompatActivity() {
                 response: Response<ArrayList<ResponseListTR>>
             ) {
                 val listResponse = response.body()
+                list.clear()
+                recyclerviewTR.adapter?.notifyDataSetChanged()
                 listResponse?.let { list.addAll(it) }
                 val adp = AdapterAdminListTR(list)
                 recyclerviewTR.adapter = adp
+
+                loading.hide()
+
                 adp.setOnItemClick(object : AdapterAdminListTR.onAdapterListener{
                     override fun onClick(list: ResponseListTR) {
                         val intent = Intent(this@AdminListTransaksiActivity, AdminFormTransaksiActivity::class.java)
                         intent.putExtra("id_transaksi", list.id.toString())
-                        intent.putExtra("nominaltransaksi",list.nominal)
-                        intent.putExtra("tanggaltransaksi",list.tanggal_transaksi)
-                        intent.putExtra("id_warga",list.id_masyarakat)
-                        intent.putExtra("id_jadwalpengambilan",list.id_jadwal_pengambilan)
+                        intent.putExtra("nominaltransaksi",list.nominal.toString())
+                        //intent.putExtra("tanggaltransaksi",list.tanggal_transaksi)
+                        intent.putExtra("id_warga",list.id_masyarakat.toString())
+                        intent.putExtra("id_jadwalpengambilan",list.id_jadwal_pengambilan.toString())
                         intent.putExtra("nama",list.nama)
-                        intent.putExtra("iduser",id_user)
+                        //intent.putExtra("iduser",id_user)
                         startActivity(intent)
                     }
 

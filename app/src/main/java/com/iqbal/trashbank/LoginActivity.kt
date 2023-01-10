@@ -1,5 +1,6 @@
 package com.iqbal.trashbank
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,6 +46,11 @@ class LoginActivity : AppCompatActivity() {
             edt_password.requestFocus()
             return
         }
+        val loading = ProgressDialog(this)
+
+        loading.setMessage("Loading...")
+        loading.setCancelable(false)
+        loading.show()
 
         ApiConfig.instance.login(edt_nohp.text.toString(), edt_password.text.toString())
             .enqueue(object : Callback<ResponseLogin>
@@ -67,21 +73,25 @@ class LoginActivity : AppCompatActivity() {
                             intent.putExtra("id_user",respon.id_user.toString())
                             intent.putExtra("nama",respon.nama)
                             startActivity(intent)
+                            loading.hide()
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah,"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()
                         }else{
                             intent = Intent(this@LoginActivity, HomeUserActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
+                            loading.hide()
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()
                         }
 
                     }else {
                         Toast.makeText(this@LoginActivity, "ERROR" + respon.Message, Toast.LENGTH_LONG).show()
+                        loading.hide()
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                     Toast.makeText(this@LoginActivity, "ERROR:" + t.message, Toast.LENGTH_LONG).show()
+                    loading.hide()
                 }
 
             })

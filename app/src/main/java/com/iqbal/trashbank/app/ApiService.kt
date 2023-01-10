@@ -62,7 +62,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("updateTR")
     fun updateTR(
-        @Field("id_transaksi") id_transaksi:Int,
+        @Field("id") id_transaksi:Int,
         @Field("nominal") nominal:String,
         @Field("id_masyarakat") id_masyarakat:Int,
         @Field("id_jadwal_pengambilan") id_jadwal_pengambilan:Int
