@@ -27,16 +27,15 @@ class AdapterAdminListJP(val list: ArrayList<ResponseListJP>)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflate = LayoutInflater.from(parent.context).inflate(R.layout.item_carry,parent,false)
-        return ViewHolder(inflate)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =  ViewHolder (
+        LayoutInflater.from(parent.context).inflate(R.layout.item_carry,parent,false)
+    )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount() = list.size
 
     interface OnAdapterListener{
         fun OnCLick(list : ResponseListJP)

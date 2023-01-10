@@ -21,13 +21,9 @@ class AdapterUserListJP(val list: ArrayList<ResponseListJP>):RecyclerView.Adapte
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
         LayoutInflater.from(parent.context).inflate(R.layout.item_carry,parent,false)
     )
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
     }
-
     override fun getItemCount() = list.size
-
-
 }
 

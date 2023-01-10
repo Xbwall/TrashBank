@@ -69,15 +69,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:textSize="23sp"
                 android:text="Tanggal Jadwal Pengambilan"/>
 
             <TextView
                 android:id="@+id/datedPick"
-                android:layout_width="339dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="2022-11-11"
+                android:textColor="@color/black"
                 android:textSize="23sp" />
 
             <Button
