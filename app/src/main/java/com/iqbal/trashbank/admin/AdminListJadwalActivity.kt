@@ -91,11 +91,18 @@ class AdminListJadwalActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>)
                 {
                     val respon = response.body()!!
-                    loadList(idusr,loading)
+                    if(respon.StatusCode == 1){
+                        loadList(idusr,loading)
 //                    startActivity(Intent(this@AdminListJadwalActivity,AdminListJadwalActivity::class.java))
 //                    finish()
-                    Toast.makeText(this@AdminListJadwalActivity, "Telah dihapus", Toast.LENGTH_SHORT).show()
-                    Log.d("HSL",respon.Message.toString())
+                        loading.hide()
+                        Toast.makeText(this@AdminListJadwalActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                        Log.d("HSL",respon.Message.toString())
+                    }else{
+                        loading.hide()
+                        Toast.makeText(this@AdminListJadwalActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    }
+
                 }
 
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {

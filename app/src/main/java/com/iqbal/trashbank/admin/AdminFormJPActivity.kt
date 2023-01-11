@@ -83,6 +83,7 @@ class AdminFormJPActivity : AppCompatActivity() {
             startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
             finish()
         }
+        loading.hide()
     }
 
     fun insertAPI(tanggal:String,id_pengurus:String,loading:ProgressDialog){
@@ -93,15 +94,15 @@ class AdminFormJPActivity : AppCompatActivity() {
                 {
                     val respon = response.body()!!
                     if(respon.StatusCode == 1){
-                        startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
+                        val intent = Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java)
+                        intent.putExtra("iduser",id_pengurus)
+                        startActivity(intent)
                         finish()
-                        loading.hide()
                         Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
                     }else{
-                        loading.hide()
                         Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
                     }
-
+                    loading.hide()
                 }
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                     Log.e("ERR",t.message.toString())

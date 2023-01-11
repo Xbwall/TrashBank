@@ -134,16 +134,16 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
     private fun insert(id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
         ApiConfig.instance.insertTR(nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
-                if (response.body()?.StatusCode == 1){
-                    loading.hide()
+                val resp = response.body()!!
+                if (resp.StatusCode == 1){
                     startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
                     finish()
-                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminFormTransaksiActivity,resp.Message,Toast.LENGTH_SHORT).show()
                 }else{
-                    loading.hide()
-                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
-                }
 
+                    Toast.makeText(this@AdminFormTransaksiActivity,resp.Message,Toast.LENGTH_SHORT).show()
+                }
+                loading.hide()
             }
 
             override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
@@ -158,17 +158,15 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
     private fun update(id_tr:Int,id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
         ApiConfig.instance.updateTR(id_tr,nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
-                if(response.body()?.StatusCode == 1){
-                    loading.hide()
+                val res = response.body()!!
+                if(res.StatusCode == 1){
                     startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
                     finish()
-                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminFormTransaksiActivity,res.Message,Toast.LENGTH_SHORT).show()
                 }else{
-                    loading.hide()
-                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminFormTransaksiActivity,res.Message,Toast.LENGTH_SHORT).show()
                 }
-
-
+                loading.hide()
             }
 
             override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {

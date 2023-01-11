@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
 
                         val role = respon.id_role
                         if(role == 1){
-                            intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
+                            val intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.putExtra("id_user",respon.id_user.toString())
                             intent.putExtra("nama",respon.nama)
@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                             loading.hide()
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah,"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()
                         }else{
-                            intent = Intent(this@LoginActivity, HomeUserActivity::class.java)
+                            val intent = Intent(this@LoginActivity, HomeUserActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
                             loading.hide()

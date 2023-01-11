@@ -77,7 +77,7 @@ class AdminListTransaksiActivity : AppCompatActivity() {
                     }
 
                     override fun iconDeleteClick(list: ResponseListTR) {
-                        hitDeleteTR(list.id)
+                        hitDeleteTR(list.id,loading)
                     }
                 })
             }
@@ -89,18 +89,25 @@ class AdminListTransaksiActivity : AppCompatActivity() {
         })
     }
 
-    private fun hitDeleteTR(id: Int) {
+    private fun hitDeleteTR(id: Int,loading:ProgressDialog) {
         ApiConfig.instance.deleteTR(id).enqueue(object : Callback<ResponseDelTR>{
             override fun onResponse(call: Call<ResponseDelTR>, response: Response<ResponseDelTR>) {
                 val respon = response.body()!!
-                startActivity(Intent(this@AdminListTransaksiActivity,AdminListTransaksiActivity::class.java))
-                finish()
-                Toast.makeText(this@AdminListTransaksiActivity, "Telah dihapus", Toast.LENGTH_SHORT).show()
-                Log.d("HSL",respon.Message.toString())
+                if(respon.StatusCode == 1){
+                    loadlist(loading)
+                    Toast.makeText(this@AdminListTransaksiActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    Log.d("HSL",respon.Message.toString())
+                }else{
+                    Toast.makeText(this@AdminListTransaksiActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    Log.d("HSL",respon.Message.toString())
+                    loading.hide()
+                }
+
             }
 
             override fun onFailure(call: Call<ResponseDelTR>, t: Throwable) {
                 Log.e("ERR",t.message.toString())
+                loading.hide()
             }
 
         })
