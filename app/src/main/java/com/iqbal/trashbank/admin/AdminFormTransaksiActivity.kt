@@ -3,7 +3,6 @@ package com.iqbal.trashbank.admin
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -118,10 +117,11 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
 
 
         btn_save.setOnClickListener {
+            loading.show()
             if(id_trnsksi == null){
-                insert(id_jp,id_wg,edt_nominal.text.toString(),loading)
+                insertTR(id_jp,id_wg,edt_nominal.text.toString(),loading)
             }else{
-                update(id_trnsksi!!.toInt(),id_jadwal_pengambilan!!.toInt(),id_masyarakat!!.toInt(),nominal.toString(),loading)
+                updateTR(id_trnsksi,nominal.toString(),id_masyarakat.toString(),id_jadwal_pengambilan.toString(),loading)
             }
         }
 
@@ -131,7 +131,7 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
         }
     }
 
-    private fun insert(id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
+    fun insertTR(id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
         ApiConfig.instance.insertTR(nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
                 val resp = response.body()!!
@@ -153,29 +153,29 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
             }
 
         })
+        loading.dismiss()
     }
 
-    private fun update(id_tr:Int,id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
-        ApiConfig.instance.updateTR(id_tr,nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
+    fun updateTR(id_transaksi:String,nominal:String,id_masyarakat:String,id_jadwal:String,loading:ProgressDialog){
+        ApiConfig.instance.updateTR(id_transaksi.toInt(),nominal,id_masyarakat.toInt(),id_jadwal.toInt()).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
-                val res = response.body()!!
-                if(res.StatusCode == 1){
+                val rsp = response.body()!!
+                if(rsp.StatusCode == 1){
                     startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
                     finish()
-                    Toast.makeText(this@AdminFormTransaksiActivity,res.Message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminFormTransaksiActivity,rsp.Message,Toast.LENGTH_SHORT).show()
                 }else{
-                    Toast.makeText(this@AdminFormTransaksiActivity,res.Message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminFormTransaksiActivity,rsp.Message,Toast.LENGTH_SHORT).show()
                 }
-                loading.hide()
             }
 
             override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                 loading.hide()
-                Log.e("ERR",t.message.toString())
                 Toast.makeText(this@AdminFormTransaksiActivity,t.message.toString(),Toast.LENGTH_LONG).show()
             }
 
         })
+        loading.dismiss()
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
