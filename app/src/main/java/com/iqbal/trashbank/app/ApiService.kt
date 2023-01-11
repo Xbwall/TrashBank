@@ -21,7 +21,7 @@ interface ApiService {
     @GET("listJP")
     fun listJP(): Call<ArrayList<ResponseListJP>>
 
-    @DELETE("deleteJP/{id}")
+    @POST("deleteJP/{id}")
     fun deleteJP(
         @Path("id") id:Int
     ):Call<ResponseDelJP>
@@ -46,7 +46,7 @@ interface ApiService {
     @GET("listTR")
     fun ListTR():Call<ArrayList<ResponseListTR>>
 
-    @DELETE("deleteTR/{id}")
+    @POST("deleteTR/{id}")
     fun deleteTR(
         @Path("id") id:Int
     ):Call<ResponseDelTR>

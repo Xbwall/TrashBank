@@ -1,6 +1,7 @@
 package com.iqbal.trashbank.admin
 
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -37,6 +38,12 @@ class AdminFormJPActivity : AppCompatActivity() {
         val id_user = intent.extras?.getString("iduser")
         Log.d("HOME","id_user = "+id_user)
 
+        val loading = ProgressDialog(this)
+
+        loading.setMessage("Loading...")
+        loading.setCancelable(false)
+        loading.show()
+
         if(id_jp == null){
             datedPick!!.text = "YYYY-MM-DD"
         }else{
@@ -67,9 +74,9 @@ class AdminFormJPActivity : AppCompatActivity() {
 
         btn_save.setOnClickListener {
             if(id_jp == null){
-                insertAPI(datedPick.text.toString(),id_user.toString())
+                insertAPI(datedPick.text.toString(),id_user.toString(),loading)
             }else{
-                updateAPI(datedPick.text.toString(),id_user.toString(),id_jp.toString())
+                updateAPI(datedPick.text.toString(),id_user.toString(),id_jp.toString(),loading)
             }
         }
         listJP.setOnClickListener {
@@ -78,36 +85,51 @@ class AdminFormJPActivity : AppCompatActivity() {
         }
     }
 
-    fun insertAPI(tanggal:String,id_pengurus:String){
+    fun insertAPI(tanggal:String,id_pengurus:String,loading:ProgressDialog){
         ApiConfig.instance.insertJP(tanggal, id_pengurus.toInt())
             .enqueue(object : Callback<ResponseDelJP>
             {
                 override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>)
                 {
                     val respon = response.body()!!
-                    startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
-                    finish()
-                    Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    if(respon.StatusCode == 1){
+                        startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
+                        finish()
+                        loading.hide()
+                        Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    }else{
+                        loading.hide()
+                        Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                     Log.e("ERR",t.message.toString())
+                    loading.hide()
                 }
             })
     }
 
-    fun updateAPI(tanggal:String,id_pengurus:String, id_jadwal:String){
+    fun updateAPI(tanggal:String,id_pengurus:String, id_jadwal:String,loading:ProgressDialog){
         ApiConfig.instance.updateJP(id_jadwal.toInt(),tanggal, id_pengurus.toInt())
             .enqueue(object : Callback<ResponseDelJP>
             {
                 override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>)
                 {
                     val respon = response.body()!!
-                    startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
-                    finish()
-                    Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    if(respon.StatusCode == 1){
+                        startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
+                        finish()
+                        loading.hide()
+                        Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    }else{
+                        loading.hide()
+                        Toast.makeText(this@AdminFormJPActivity, respon.Message, Toast.LENGTH_SHORT).show()
+                    }
                 }
                 override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                     Log.e("ERR",t.message.toString())
+                    loading.hide()
                 }
             })
     }

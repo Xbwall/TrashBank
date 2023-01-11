@@ -119,9 +119,9 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
 
         btn_save.setOnClickListener {
             if(id_trnsksi == null){
-                insert(id_jp,id_wg,edt_nominal.text.toString())
+                insert(id_jp,id_wg,edt_nominal.text.toString(),loading)
             }else{
-                update(id_trnsksi!!.toInt(),id_jadwal_pengambilan!!.toInt(),id_masyarakat!!.toInt(),nominal.toString())
+                update(id_trnsksi!!.toInt(),id_jadwal_pengambilan!!.toInt(),id_masyarakat!!.toInt(),nominal.toString(),loading)
             }
         }
 
@@ -131,31 +131,48 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
         }
     }
 
-    private fun insert(id_jp:Int,id_wg:Int,nominal:String){
+    private fun insert(id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
         ApiConfig.instance.insertTR(nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
-                startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
-                finish()
-                Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                if (response.body()?.StatusCode == 1){
+                    loading.hide()
+                    startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
+                    finish()
+                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                }else{
+                    loading.hide()
+                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                }
+
             }
 
             override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
                 Log.e("ERR",t.message.toString())
+                loading.hide()
                 Toast.makeText(this@AdminFormTransaksiActivity,t.message.toString(),Toast.LENGTH_LONG).show()
             }
 
         })
     }
 
-    private fun update(id_tr:Int,id_jp:Int,id_wg:Int,nominal:String){
+    private fun update(id_tr:Int,id_jp:Int,id_wg:Int,nominal:String,loading:ProgressDialog){
         ApiConfig.instance.updateTR(id_tr,nominal,id_wg,id_jp).enqueue(object :Callback<ResponseDelJP>{
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
-                startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
-                finish()
-                Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                if(response.body()?.StatusCode == 1){
+                    loading.hide()
+                    startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
+                    finish()
+                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                }else{
+                    loading.hide()
+                    Toast.makeText(this@AdminFormTransaksiActivity,response.body()?.Message,Toast.LENGTH_SHORT).show()
+                }
+
+
             }
 
             override fun onFailure(call: Call<ResponseDelJP>, t: Throwable) {
+                loading.hide()
                 Log.e("ERR",t.message.toString())
                 Toast.makeText(this@AdminFormTransaksiActivity,t.message.toString(),Toast.LENGTH_LONG).show()
             }
