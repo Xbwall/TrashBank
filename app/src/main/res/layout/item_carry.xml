@@ -45,7 +45,7 @@
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:gravity="center_vertical|center_horizontal|center"
                         android:text="12-10-22"
-                        android:textColor="@color/black"
+                        android:textColor="@color/blue"
                         android:textSize="20sp" />
 
                 </LinearLayout>

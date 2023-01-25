@@ -16,6 +16,9 @@ interface ApiService {
         @Field("password") password: String
     ): Call<ResponseLogin>
 
+    @GET("listWG")
+    fun listWG():Call<ArrayList<ResponseListWG>>
+
 //=======================JADWAL PENGAMBILAN================================
 
     @GET("listJP")
@@ -67,9 +70,4 @@ interface ApiService {
         @Field("id_masyarakat") id_masyarakat:Int,
         @Field("id_jadwal_pengambilan") id_jadwal_pengambilan:Int
     ):Call<ResponseDelJP>
-
-//=============================util=======================================
-
-    @GET("listWG")
-    fun listWG():Call<ArrayList<ResponseListWG>>
 }

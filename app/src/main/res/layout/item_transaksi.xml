@@ -56,7 +56,7 @@
                         android:textAlignment="textStart"
                         android:text="Tanggal Pengambilan"
                         android:layout_margin="5dp"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/itm_tanggaltransaksi"

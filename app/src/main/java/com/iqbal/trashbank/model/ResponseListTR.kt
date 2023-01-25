@@ -3,7 +3,7 @@ package com.iqbal.trashbank.model
 import java.math.BigInteger
 
 class ResponseListTR {
-    var id = 0
+    var id: BigInteger? = null
     var nominal: BigInteger? = null
     var tanggal_transaksi: String? = null
     var id_masyarakat: Int? = null

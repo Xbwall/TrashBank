@@ -33,9 +33,11 @@ class AdminFormJPActivity : AppCompatActivity() {
         s = SharedPref(this)
 
         datedPick!!.text = "YYYY-MM-DD"
+
         val id_jp = intent.extras?.getString("id_jadwalpengambilan")
         val date_jp = intent.extras?.getString("tgl_jadwalpengambilan")
         val id_user = intent.extras?.getString("iduser")
+
         Log.d("HOME","id_user = "+id_user)
 
         val loading = ProgressDialog(this)
@@ -81,7 +83,9 @@ class AdminFormJPActivity : AppCompatActivity() {
             }
         }
         listJP.setOnClickListener {
-            startActivity(Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java))
+            val intent = Intent(this@AdminFormJPActivity,AdminListJadwalActivity::class.java)
+            intent.putExtra("iduser",id_user)
+            startActivity(intent)
             finish()
         }
         loading.hide()

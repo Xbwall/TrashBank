@@ -35,8 +35,6 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
 
     private var idJp = ArrayList<Int>()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_form_transaksi)
@@ -48,11 +46,13 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
         loading.show()
 
         //variabel tampung data get untuk update
+        val id_user = intent.extras?.getString("iduser")
         val id_trnsksi = intent.extras?.getString("id_transaksi")
         val nominal = intent.extras?.getString("nominaltransaksi")
         val id_masyarakat = intent.extras?.getString("id_warga")
-        val id_jadwal_pengambilan = intent.extras?.getString("id_jadwalpengambilan")
-        Log.e("cekTransaksiId",id_trnsksi.toString())
+        val  id_jadwal_pengambilan = intent.extras?.getString("id_jadwalpengambilan")
+        Log.e("cekTransaksiId = ","============"+id_trnsksi.toString())
+
         //init list jadwal
         ApiConfig.instance.listJP().enqueue(object : Callback<ArrayList<ResponseListJP>> {
             override fun onResponse(
@@ -66,7 +66,7 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
                 }
                 idJp = listIdJP
                 spinnerJadwal.onItemSelectedListener = this@AdminFormTransaksiActivity
-                val adpt =ArrayAdapter(this@AdminFormTransaksiActivity,android.R.layout.simple_spinner_dropdown_item, listTanggalJP)
+                val adpt = ArrayAdapter(this@AdminFormTransaksiActivity,android.R.layout.simple_spinner_dropdown_item, listTanggalJP)
                 spinnerJadwal.adapter = adpt
 
                 if(id_jadwal_pengambilan !== null){
@@ -125,6 +125,12 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
             }
         }
 
+        listJP.setOnClickListener({
+            val intent = Intent(this, AdminFormTransaksiActivity::class.java)
+            intent.putExtra("iduser",id_user)
+            startActivity(intent)
+        })
+
         if(id_trnsksi !== null){
             //Log.e("FormTR","index jp ="+index)
             edt_nominal.setText(nominal)
@@ -161,6 +167,9 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
                 val rsp = response.body()!!
                 if(rsp.StatusCode == 1){
+
+                    var idtr = intent.putExtra("id_user",rsp.idtr.toString())
+
                     startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
                     finish()
                     Toast.makeText(this@AdminFormTransaksiActivity,rsp.Message,Toast.LENGTH_SHORT).show()

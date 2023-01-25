@@ -12,9 +12,9 @@ class AdapterUserListTR(val list: ArrayList<ResponseListTR>):RecyclerView.Adapte
     inner class ViewHolder(itemview : View):RecyclerView.ViewHolder(itemview) {
         fun bind(role : ResponseListTR){
             with(itemView){
-                itemView.itm_namaTR.text = role.nama
-                itemView.itm_nominal.text = role.nominal.toString()
-                itemView.itm_tanggaltransaksi.text = role.tanggal_transaksi
+                itemView.itm_namaTR.text = "Nama Warga : "+role.nama
+                itemView.itm_nominal.text = "Nominal Bayar : Rp. "+role.nominal.toString()
+                itemView.itm_tanggaltransaksi.text = "Tanggal Transaksi : "+role.tanggal_transaksi
             }
         }
     }

@@ -67,7 +67,7 @@ class AdminListJadwalActivity : AppCompatActivity() {
                         val intent = Intent(this@AdminListJadwalActivity,AdminFormJPActivity::class.java)
                         intent.putExtra("id_jadwalpengambilan",list.id.toString())
                         intent.putExtra("tgl_jadwalpengambilan",list.tanggal)
-                        intent.putExtra("iduser",idusr)
+                        intent.putExtra("iduser",idusr.toString())
                         startActivity(intent)
                     }
                     //icon delete klick

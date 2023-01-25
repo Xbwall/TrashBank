@@ -33,7 +33,7 @@ class AdapterAdminListTR(val list: ArrayList<ResponseListTR>): RecyclerView.Adap
                 itemView.itm_tgl_pengambilan.text = "Tanggal Pengambilan : "+role.tanggal
                 itemView.itm_tanggaltransaksi.text = "Tanggal Transaksi : "+role.tanggal_transaksi
                 itemView.contentTR.setOnClickListener { onItemClickListener?.onClick(role) }
-                itemView.btn_deleteTR.setOnClickListener{onItemClickListener?.iconDeleteClick(role)}
+                itemView.btn_deleteTR.setOnClickListener{ onItemClickListener?.iconDeleteClick(role)}
             }
         }
 

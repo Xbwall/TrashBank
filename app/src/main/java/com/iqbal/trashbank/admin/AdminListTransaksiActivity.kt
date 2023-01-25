@@ -38,7 +38,7 @@ class AdminListTransaksiActivity : AppCompatActivity() {
 
         insertTR.setOnClickListener {
             startActivity(Intent(this,AdminFormTransaksiActivity::class.java))
-            intent.putExtra("iduser",id_user)
+            intent.putExtra("iduser",id_user.toString())
         }
 
         loadlist(loading)
@@ -77,7 +77,7 @@ class AdminListTransaksiActivity : AppCompatActivity() {
                     }
 
                     override fun iconDeleteClick(list: ResponseListTR) {
-                        hitDeleteTR(list.id,loading)
+                        hitDeleteTR(list.id!!.toInt(),loading)
                     }
                 })
             }

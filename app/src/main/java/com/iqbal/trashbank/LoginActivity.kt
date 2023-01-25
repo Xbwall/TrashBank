@@ -30,9 +30,6 @@ class LoginActivity : AppCompatActivity() {
         btn_login.setOnClickListener {
             login()
         }
-
-        // cek apakah sudah login sebelumnya
-
     }
 
     fun login(){
@@ -46,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
             edt_password.requestFocus()
             return
         }
-        val loading = ProgressDialog(this)
 
+        val loading = ProgressDialog(this)
         loading.setMessage("Loading...")
         loading.setCancelable(false)
         loading.show()
@@ -60,12 +57,6 @@ class LoginActivity : AppCompatActivity() {
                     val respon = response.body()!!
 
                     if (respon.Success == 1 ){
-                        // simpan session login
-                        //s.setStatusLogin(true)
-
-                        //val merge = respon.id_user.toString()+","+s.getString(s.id_user)+", "+s.getString(s.id_role)
-                        //Log.e("LOGIN",merge)
-
                         val role = respon.id_role
                         if(role == 1){
                             val intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
@@ -82,18 +73,15 @@ class LoginActivity : AppCompatActivity() {
                             loading.hide()
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()
                         }
-
                     }else {
                         Toast.makeText(this@LoginActivity, "ERROR" + respon.Message, Toast.LENGTH_LONG).show()
                         loading.hide()
                     }
                 }
-
                 override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                     Toast.makeText(this@LoginActivity, "ERROR:" + t.message, Toast.LENGTH_LONG).show()
                     loading.hide()
                 }
-
             })
     }
 }

@@ -34,11 +34,9 @@ class UserListJadwalActivity : AppCompatActivity() {
                 val adp = AdapterUserListJP(list)
                 userrecyclerview.adapter = adp
             }
-
             override fun onFailure(call: Call<ArrayList<ResponseListJP>>, t: Throwable) {
                 Log.e("ERR",t.message.toString())
             }
-
         })
     }
 }
