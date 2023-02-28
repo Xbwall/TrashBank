@@ -8,10 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiConfig {
-    private const val BASE_URL = "http://10.0.2.2:8000/api/"//"https://apibenksampah.000webhostapp.com/api/"
+    private const val hosting = "https://apibenksampah.000webhostapp.com/api/"
+    private const val localhost = "http://10.0.2.2:8000/api/"
 
-    private val client: Retrofit
-        get() {
+    private const val BASE_URL = localhost
+
+    private val client: Retrofit get()
+    {
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
@@ -31,6 +34,5 @@ object ApiConfig {
                 .build()
         }
 
-    val instance: ApiService
-        get() = client.create(ApiService::class.java)
+    val instance: ApiService get() = client.create(ApiService::class.java)
 }

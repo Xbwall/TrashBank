@@ -63,7 +63,7 @@ interface ApiService {
     ):Call<ResponseDelJP>
 
     @FormUrlEncoded
-    @POST("updateTR")
+    @PUT("updateTR")
     fun updateTR(
         @Field("id_transaksi") id_transaksi:Int,
         @Field("nominal") nominal:String,
