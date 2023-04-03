@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".admin.AdminListJadwalActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:background="@color/blue"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/judul"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/btn_insertJP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="20dp"
             android:text="List Jadwal Pengambilan"
             android:textAlignment="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -29,11 +31,13 @@
             android:layout_marginRight="10dp"
             android:id="@+id/btn_insertJP"
             android:layout_width="67dp"
-            android:layout_height="52dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
             android:src="@drawable/ic_baseline_add_circle_24"
-            />
-    </LinearLayout>
+            app:tint="@color/white" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

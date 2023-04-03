@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.iqbal.trashbank.R
 import com.iqbal.trashbank.app.ApiConfig
+import com.iqbal.trashbank.helper.Constant
+import com.iqbal.trashbank.helper.SharedPref
 import com.iqbal.trashbank.model.ResponseDelJP
 import com.iqbal.trashbank.model.ResponseListJP
 import com.iqbal.trashbank.model.ResponseListWG
@@ -35,10 +37,13 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
 
     private var idJp = ArrayList<Int>()
 
+    lateinit var s : SharedPref
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_form_transaksi)
 
+        s = SharedPref(this)
         val loading = ProgressDialog(this)
 
         loading.setMessage("Loading...")
@@ -46,11 +51,11 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
         loading.show()
 
         //variabel tampung data get untuk update
-        val id_user = intent.extras?.getString("iduser")
-        val id_trnsksi = intent.extras?.getString("id_transaksi")
-        val nominal = intent.extras?.getString("nominaltransaksi")
-        val id_masyarakat = intent.extras?.getString("id_warga")
-        val  id_jadwal_pengambilan = intent.extras?.getString("id_jadwalpengambilan")
+        val id_user = s.getString(Constant.PREF_ID_USER)
+        val id_trnsksi = s.getString(Constant.PREF_ID_TRANSAKSI)
+        val nominal = s.getString(Constant.PREF_NOMINAL)
+        val id_masyarakat = s.getString(Constant.PREF_ID_MASYARAKAT)
+        val  id_jadwal_pengambilan = s.getString(Constant.PREF_ID_JADWALPENGAMBILAN)
         Log.e("cekTransaksiId = ","============"+id_trnsksi.toString())
 
         //init list jadwal
@@ -115,24 +120,20 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
 
         })
 
-
         btn_save.setOnClickListener {
             loading.show()
             if(id_trnsksi == null){
                 insertTR(id_jp,id_wg,edt_nominal.text.toString(),loading)
             }else{
-                updateTR(id_trnsksi,nominal.toString(),id_masyarakat.toString(),id_jadwal_pengambilan.toString(),loading)
+                updateTR(id_trnsksi,edt_nominal.text.toString(),id_wg.toString(),id_jp.toString(),loading)
             }
         }
 
         listJP.setOnClickListener({
-            val intent = Intent(this, AdminFormTransaksiActivity::class.java)
-            intent.putExtra("iduser",id_user)
-            startActivity(intent)
+            startActivity(Intent(this, AdminListTransaksiActivity::class.java))
         })
 
         if(id_trnsksi !== null){
-            //Log.e("FormTR","index jp ="+index)
             edt_nominal.setText(nominal)
         }
     }
@@ -167,9 +168,6 @@ class AdminFormTransaksiActivity : AppCompatActivity(), AdapterView.OnItemSelect
             override fun onResponse(call: Call<ResponseDelJP>, response: Response<ResponseDelJP>) {
                 val rsp = response.body()!!
                 if(rsp.StatusCode == 1){
-
-                    var idtr = intent.putExtra("id_user",rsp.idtr.toString())
-
                     startActivity(Intent(this@AdminFormTransaksiActivity,AdminListTransaksiActivity::class.java))
                     finish()
                     Toast.makeText(this@AdminFormTransaksiActivity,rsp.Message,Toast.LENGTH_SHORT).show()

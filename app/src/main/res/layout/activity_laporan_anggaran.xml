@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="20dp"
-            android:text="Laporan Anggaran"
+            android:text="Laporan Penggunaan Dana"
             android:textAlignment="center"
             android:textColor="@color/blue"
             android:textSize="25sp"

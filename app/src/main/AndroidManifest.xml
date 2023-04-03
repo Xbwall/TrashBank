@@ -17,7 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LaporanAnggaranActivity"
+            android:name=".user.TabunganActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.LaporanAnggaranActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -86,6 +93,10 @@
                 android:value="" />
         </activity>
         <activity android:name=".admin.HomeAdminActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

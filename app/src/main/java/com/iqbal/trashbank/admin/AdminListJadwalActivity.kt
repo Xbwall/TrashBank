@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.iqbal.trashbank.R
 import com.iqbal.trashbank.adapter.AdapterAdminListJP
 import com.iqbal.trashbank.app.ApiConfig
+import com.iqbal.trashbank.helper.Constant
+import com.iqbal.trashbank.helper.SharedPref
 import com.iqbal.trashbank.model.ResponseDelJP
 import com.iqbal.trashbank.model.ResponseListJP
 import kotlinx.android.synthetic.main.activity_admin_list_jadwal.*
@@ -20,23 +22,22 @@ import retrofit2.Response
 class AdminListJadwalActivity : AppCompatActivity() {
 
     private val list = ArrayList<ResponseListJP>()
+    lateinit var s:SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list_jadwal)
 
-        val id_user = intent.extras?.getString("iduser")
+        s = SharedPref(this)
+        val id_user = s.getString(Constant.PREF_ID_USER)
 
         val loading = ProgressDialog(this)
-
         loading.setMessage("Loading...")
         loading.setCancelable(false)
         loading.show()
 
         btn_insertJP.setOnClickListener {
-            val intent = Intent(this, AdminFormJPActivity::class.java)
-            intent.putExtra("iduser",id_user)
-            startActivity(intent)
+            startActivity(Intent(this, AdminFormJPActivity::class.java))
         }
 
         loadList(id_user.toString(),loading)
@@ -65,9 +66,8 @@ class AdminListJadwalActivity : AppCompatActivity() {
                     //content Click
                     override fun OnCLick(list: ResponseListJP) {
                         val intent = Intent(this@AdminListJadwalActivity,AdminFormJPActivity::class.java)
-                        intent.putExtra("id_jadwalpengambilan",list.id.toString())
-                        intent.putExtra("tgl_jadwalpengambilan",list.tanggal)
-                        intent.putExtra("iduser",idusr.toString())
+                        s.putString(Constant.PREF_ID_JP,list.id.toString())
+                        s.putString(Constant.PREF_TANGGAL_JP,list.tanggal.toString())
                         startActivity(intent)
                     }
                     //icon delete klick
@@ -93,8 +93,6 @@ class AdminListJadwalActivity : AppCompatActivity() {
                     val respon = response.body()!!
                     if(respon.StatusCode == 1){
                         loadList(idusr,loading)
-//                    startActivity(Intent(this@AdminListJadwalActivity,AdminListJadwalActivity::class.java))
-//                    finish()
                         loading.hide()
                         Toast.makeText(this@AdminListJadwalActivity, respon.Message, Toast.LENGTH_SHORT).show()
                         Log.d("HSL",respon.Message.toString())

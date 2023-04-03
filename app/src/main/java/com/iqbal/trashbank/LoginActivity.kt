@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.iqbal.trashbank.admin.HomeAdminActivity
 import com.iqbal.trashbank.app.ApiConfig
+import com.iqbal.trashbank.helper.Constant
 import com.iqbal.trashbank.helper.SharedPref
 import com.iqbal.trashbank.login.ResponseLogin
 import com.iqbal.trashbank.user.HomeUserActivity
@@ -50,19 +51,19 @@ class LoginActivity : AppCompatActivity() {
         loading.show()
 
         ApiConfig.instance.login(edt_nohp.text.toString(), edt_password.text.toString())
-            .enqueue(object : Callback<ResponseLogin>
-            {
-                override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>)
-                {
+            .enqueue(object : Callback<ResponseLogin> {
+                override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
                     val respon = response.body()!!
-
                     if (respon.Success == 1 ){
+                        s.putString(Constant.PREF_ID_USER,respon.id_user.toString())
+                        s.putString(Constant.PREF_NAMA,respon.nama.toString())
+                        s.putString(Constant.PREF_ID_ROLE,respon.id_role.toString())
+                        s.putString(Constant.PREF_ROLE_NAME,respon.role_name.toString())
+                        s.putString(Constant.PREF_TELEPON,respon.nohp.toString())
                         val role = respon.id_role
                         if(role == 1){
                             val intent = Intent(this@LoginActivity, HomeAdminActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            intent.putExtra("id_user",respon.id_user.toString())
-                            intent.putExtra("nama",respon.nama)
                             startActivity(intent)
                             loading.hide()
                             Toast.makeText(this@LoginActivity, "Selamat Datang Di aplikasi Bank Sampah,"+respon.role_name+", "+respon.nama, Toast.LENGTH_SHORT).show()

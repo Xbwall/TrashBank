@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="Pilih Jadwal : "/>
+                    android:text="Jadwal Ambil Sampah : "/>
 
                 <Spinner
                     android:id="@+id/spinnerJadwal"
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="Pilih Warga : "/>
+                    android:text="Nama Warga : "/>
 
                 <Spinner
                     android:id="@+id/spinnerPenduduk"
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="Nominal : "/>
+                    android:text="Biaya Ambil Sampah : "/>
 
                 <EditText
                     android:id="@+id/edt_nominal"
@@ -124,6 +124,7 @@
                     android:layout_width="201dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:backgroundTint="@color/blue"
                     android:text="Save Data" />
 
 

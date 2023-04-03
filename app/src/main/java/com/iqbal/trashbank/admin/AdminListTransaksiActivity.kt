@@ -11,6 +11,8 @@ import com.iqbal.trashbank.R
 import com.iqbal.trashbank.adapter.AdapterAdminListJP
 import com.iqbal.trashbank.adapter.AdapterAdminListTR
 import com.iqbal.trashbank.app.ApiConfig
+import com.iqbal.trashbank.helper.Constant
+import com.iqbal.trashbank.helper.SharedPref
 import com.iqbal.trashbank.model.ResponseDelTR
 import com.iqbal.trashbank.model.ResponseListTR
 import kotlinx.android.synthetic.main.activity_admin_list_jadwal.*
@@ -22,6 +24,7 @@ import retrofit2.Response
 class AdminListTransaksiActivity : AppCompatActivity() {
 
     private val list = ArrayList<ResponseListTR>()
+    lateinit var s: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +36,12 @@ class AdminListTransaksiActivity : AppCompatActivity() {
         loading.setCancelable(false)
         loading.show()
 
-        val id_user = intent.extras?.getString("iduser")
+        s = SharedPref(this)
+        val id_user = s.getString(Constant.PREF_ID_USER)
         Log.d("HOME","id_user = "+id_user)
 
         insertTR.setOnClickListener {
             startActivity(Intent(this,AdminFormTransaksiActivity::class.java))
-            intent.putExtra("iduser",id_user.toString())
         }
 
         loadlist(loading)
@@ -65,15 +68,12 @@ class AdminListTransaksiActivity : AppCompatActivity() {
 
                 adp.setOnItemClick(object : AdapterAdminListTR.onAdapterListener{
                     override fun onClick(list: ResponseListTR) {
-                        val intent = Intent(this@AdminListTransaksiActivity, AdminFormTransaksiActivity::class.java)
-                        intent.putExtra("id_transaksi", list.id.toString())
-                        intent.putExtra("nominaltransaksi",list.nominal.toString())
-                        //intent.putExtra("tanggaltransaksi",list.tanggal_transaksi)
-                        intent.putExtra("id_warga",list.id_masyarakat.toString())
-                        intent.putExtra("id_jadwalpengambilan",list.id_jadwal_pengambilan.toString())
-                        intent.putExtra("nama",list.nama)
-                        //intent.putExtra("iduser",id_user)
-                        startActivity(intent)
+                        s.putString(Constant.PREF_ID_TRANSAKSI, list.id.toString())
+                        s.putString(Constant.PREF_NOMINAL,list.nominal.toString())
+                        s.putString(Constant.PREF_ID_MASYARAKAT,list.id_masyarakat.toString())
+                        s.putString(Constant.PREF_ID_JADWALPENGAMBILAN,list.id_jadwal_pengambilan.toString())
+                        s.putString(Constant.PREF_NAMA_TRANSAKSI,list.nama.toString())
+                        startActivity(Intent(this@AdminListTransaksiActivity, AdminFormTransaksiActivity::class.java))
                     }
 
                     override fun iconDeleteClick(list: ResponseListTR) {
