@@ -27,7 +27,7 @@ class HomeUserActivity : AppCompatActivity() {
         })
 
         crd_tabung.setOnClickListener({
-            startActivity(Intent(this, TabunganActivity::class.java))
+            startActivity(Intent(this, UserTabunganActivity::class.java))
         })
     }
 }
