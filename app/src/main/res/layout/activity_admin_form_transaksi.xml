@@ -26,7 +26,7 @@
         android:id="@+id/idJP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kelola Transaksi"
+        android:text="Kelola Transaksi Pengambilan Sampah"
         android:textColor="@color/white"
         tools:layout_editor_absoluteX="136dp"
         android:textSize="30sp"
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="Nama Warga : "/>
+                    android:text="Nama Nasabah : "/>
 
                 <Spinner
                     android:id="@+id/spinnerPenduduk"
@@ -136,7 +136,7 @@
                 android:gravity="center"
                 android:textSize="15sp"
                 android:textColor="@color/blue"
-                android:text="List Jadwal Pengambilan"/>
+                android:text="List Transaksi Pengambilan Sampah"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

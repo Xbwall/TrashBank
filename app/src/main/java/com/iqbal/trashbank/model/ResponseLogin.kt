@@ -1,4 +1,4 @@
-package com.iqbal.trashbank.login
+package com.iqbal.trashbank.model
 
 class ResponseLogin {
     var Success = 0

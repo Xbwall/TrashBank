@@ -4,13 +4,12 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.iqbal.trashbank.admin.HomeAdminActivity
 import com.iqbal.trashbank.app.ApiConfig
 import com.iqbal.trashbank.helper.Constant
 import com.iqbal.trashbank.helper.SharedPref
-import com.iqbal.trashbank.login.ResponseLogin
+import com.iqbal.trashbank.model.ResponseLogin
 import com.iqbal.trashbank.user.HomeUserActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call

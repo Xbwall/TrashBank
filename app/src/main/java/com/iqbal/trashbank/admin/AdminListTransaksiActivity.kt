@@ -49,6 +49,7 @@ class AdminListTransaksiActivity : AppCompatActivity() {
     }
 
     fun loadlist(loading:ProgressDialog){
+
         recyclerviewTR.setHasFixedSize(true)
         recyclerviewTR.layoutManager = LinearLayoutManager(this)
 
@@ -60,6 +61,7 @@ class AdminListTransaksiActivity : AppCompatActivity() {
                 val listResponse = response.body()
                 list.clear()
                 recyclerviewTR.adapter?.notifyDataSetChanged()
+
                 listResponse?.let { list.addAll(it) }
                 val adp = AdapterAdminListTR(list)
                 recyclerviewTR.adapter = adp

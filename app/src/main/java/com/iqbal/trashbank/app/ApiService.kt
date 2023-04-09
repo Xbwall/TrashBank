@@ -1,6 +1,6 @@
 package com.iqbal.trashbank.app
 
-import com.iqbal.trashbank.login.ResponseLogin
+import com.iqbal.trashbank.model.ResponseLogin
 import com.iqbal.trashbank.model.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -70,4 +70,24 @@ interface ApiService {
         @Field("id_masyarakat") id_masyarakat:Int,
         @Field("id_jadwal_pengambilan") id_jadwal_pengambilan:Int
     ):Call<ResponseDelJP>
+
+//==========================PENGAJUAN======================================
+    @FormUrlEncoded
+    @POST("createpengajuan")
+    fun insertpengajuan(
+        @Field("status") status:String,
+        @Field("note") note:String,
+        @Field("id_masyarakat") id_masyarakat: Int
+    ):Call<ModelListPengajuan>
+
+    @FormUrlEncoded
+    @POST("userlistpengajuan")
+    fun ListPengajuan(
+        @Field("id") id_user: Int
+    ):Call<ArrayList<ModelListPengajuan>>
+
+    @DELETE("deletepengajuan/{id}")
+    fun deletepengajuan(
+        @Path("id") id:Int
+    ):Call<ModelListPengajuan>
 }
