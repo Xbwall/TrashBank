@@ -35,6 +35,7 @@ class AdminFormJPActivity : AppCompatActivity() {
 
         datedPick!!.text = "YYYY-MM-DD"
 
+
         val id_jp = s.getString(Constant.PREF_ID_JP)
         val date_jp = s.getString(Constant.PREF_TANGGAL_JP)
         val id_user = s.getString(Constant.PREF_ID_USER)
