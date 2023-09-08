@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
     android:padding="5dp">
 
     <com.google.android.material.card.MaterialCardView
@@ -35,15 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@+id/btn_delete"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/itm_Jenis_Sampah"
-                        android:layout_marginBottom="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:text="Botol Kaca"
                         android:textStyle="bold"
                         android:textColor="@color/black"
@@ -53,23 +52,13 @@
                         android:id="@+id/itm_harga_sampah"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rp 2000 / Kg"
+                        android:text="Rp 2000"
                         android:textStyle="bold"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/btn_delete"
-                    android:layout_gravity="center"
-                    android:layout_width="50dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_delete_24">
-                </ImageView>
             </RelativeLayout>
 
 

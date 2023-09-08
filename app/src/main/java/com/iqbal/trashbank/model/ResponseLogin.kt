@@ -6,6 +6,8 @@ class ResponseLogin {
     var id_user: Int? = null
     var nama: String? = null
     var nohp: String? = null
+    var password: String? = null
     var id_role: Int? = null
     var role_name: String? = null
+    var saldo: String? = null
 }

@@ -17,6 +17,29 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminListSampah"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminAddSampah"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminFormPengajuan"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".admin.AdminListPengajuan"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".user.UserFormPengajuan"
             android:exported="false">
             <meta-data
@@ -30,7 +53,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".user.UserListTransaksiActivity"
             android:exported="false">

@@ -77,16 +77,21 @@ class UserListPengajuan : AppCompatActivity() {
                 var listresponse = response.body()
                 list.clear()
                 b.rcPengajuan.adapter?.notifyDataSetChanged()
-
-                listresponse?.let { list.addAll(it) }
+                listresponse?.let {list.addAll(it)}
                 val adp = AdapterPengajuan(list)
                 b.rcPengajuan.adapter = adp
-
                 loading.hide()
 
                 adp.setOnItemClick(object : AdapterPengajuan.onAdapterListener{
                     override fun iconDeleteClick(list: ModelListPengajuan) {
                         deletePengajuan(list.id!!.toInt(),loading)
+                    }
+
+                    override fun onClick(list: ModelListPengajuan) {
+                        s.putString(Constant.PREF_ID_PENGAJUAN,list.id.toString())
+                        s.putString(Constant.PREF_Status_Pengajuan,list.status.toString())
+                        s.putString(Constant.PREF_NOTE_PENGAJUAN,list.status.toString())
+                        startActivity(Intent(this@UserListPengajuan, UserFormPengajuan::class.java))
                     }
 
                 })

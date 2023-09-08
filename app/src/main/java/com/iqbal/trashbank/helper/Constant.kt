@@ -7,6 +7,7 @@ class Constant {
         val PREF_ROLE_NAME = "PREF_ROLE_NAME"
         val PREF_NAMA = "PREF_NAMA"
         val PREF_TELEPON = "PREF_TELEPON"
+        val PREF_SALDO = "PREF_SALDO"
 
         val PREF_ID_JP = "PREF_ID_JP"
         val PREF_TANGGAL_JP = "PREF_TANGGAL_JP"
@@ -18,5 +19,12 @@ class Constant {
         val PREF_NAMA_TRANSAKSI = "PREF_NAMA_TRANSAKSI"
 
         val PREF_ID_PENGAJUAN = "PREF_ID_PENGAJUAN"
+        val PREF_Status_Pengajuan = "PREF_Status_Pengajuan"
+
+        val PREF_ID_PENGAJUAN_ADMIN = "PREF_ID_PENGAJUAN_ADMIN"
+        val PREF_ID_MASYARAKAT_ADMIN = "PREF_ID_MASYARAKAT_ADMIN"
+        val PREF_NAMA_NASABAH = "PREF_NAMA_NASABAH"
+        val PREF_TANGGAL_PENGAJUAN = "PREF_TANGGAL_PENGAJUAN"
+        val PREF_NOTE_PENGAJUAN = "PREF_NOTE_PENGAJUAN"
     }
 }

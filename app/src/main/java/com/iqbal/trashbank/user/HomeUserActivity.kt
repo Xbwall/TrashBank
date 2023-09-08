@@ -15,6 +15,7 @@ class HomeUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_user)
 
         s = SharedPref(this)
+        txt_saldo.text = "Rp " + s.getString(Constant.PREF_SALDO)
         txt_nama_user.text = s.getString(Constant.PREF_NAMA)
         txt_nohp_user.text = s.getString(Constant.PREF_TELEPON)
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -28,48 +28,67 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp">
+                android:padding="20dp">
                 <LinearLayout
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@+id/btn_delete"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/itm_Jenis_Sampah"
-                        android:layout_marginBottom="7dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Nasahbah"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/itm_nama_nasabah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Pengajuan Sampah"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/itm_tanggalpengajuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12-10-22"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp" />
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Botol Kaca"
+                        android:text="Status"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="17sp" />
 
                     <TextView
-                        android:id="@+id/itm_harga_sampah"
+                        android:id="@+id/itm_statuspengajuan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rp 2000 / Kg"
+                        android:text="Belum Diajukan"
                         android:textStyle="bold"
                         android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/btn_delete"
-                    android:layout_gravity="center"
-                    android:layout_width="50dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_delete_24">
-                </ImageView>
             </RelativeLayout>
 
 

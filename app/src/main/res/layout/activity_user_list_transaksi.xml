@@ -24,8 +24,6 @@
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
-
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,8 +33,5 @@
         android:layout_below="@+id/header"
         tools:layout_editor_absoluteY="94dp"
         tools:listitem="@layout/item_transaksi">
-
     </androidx.recyclerview.widget.RecyclerView>
-
-
 </RelativeLayout>

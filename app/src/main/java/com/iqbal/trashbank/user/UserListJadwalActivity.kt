@@ -30,7 +30,7 @@ class UserListJadwalActivity : AppCompatActivity() {
                 response: Response<ArrayList<ResponseListJP>>
             ) {
                 val respon = response.body()!!
-                respon.let { list.addAll(it) }
+                respon.let { list.addAll(it)}
                 val adp = AdapterUserListJP(list)
                 userrecyclerview.adapter = adp
             }

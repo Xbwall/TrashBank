@@ -48,23 +48,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="23sp"-->
-<!--                android:textColor="@color/blue"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Id Pengurus"/>-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/edt_idPengurus"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:hint="XX"-->
-<!--                android:minHeight="48dp" />-->
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,8 +90,6 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="@color/blue"
                     android:text="Save Data" />
-
-
             </LinearLayout>
             <TextView
                 android:id="@+id/listJP"
@@ -118,7 +99,6 @@
                 android:textSize="15sp"
                 android:textColor="@color/blue"
                 android:text="List Jadwal Pengambilan"/>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

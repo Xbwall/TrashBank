@@ -4,28 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.UserListPengajuan">
+    tools:context=".admin.AdminListSampah">
+
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/blue"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/judul"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/img_insertpengajuan"
+            android:layout_toLeftOf="@+id/tambahjenissampah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="20dp"
-            android:text="List Pengajuan"
+            android:text="List Jenis Sampah"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <ImageView
-            android:id="@+id/img_insertpengajuan"
+            android:id="@+id/tambahjenissampah"
             android:layout_width="67dp"
             android:layout_height="67dp"
             android:layout_alignParentRight="true"
@@ -35,13 +38,15 @@
             android:src="@drawable/ic_baseline_add_circle_24"
             app:tint="@color/white" />
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_pengajuan"
+        android:id="@+id/rc_jenissampah"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
         tools:layout_editor_absoluteY="94dp"
-        tools:listitem="@layout/item_pengajuan">
+        tools:listitem="@layout/item_tambah_sampah">
+
     </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

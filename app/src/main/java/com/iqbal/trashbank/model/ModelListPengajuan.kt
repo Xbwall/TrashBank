@@ -19,12 +19,20 @@ class ModelListPengajuan {
 	@field:SerializedName("id_masyarakat")
 	val idMasyarakat: Int? = null
 
+	@field:SerializedName("id_TR_sampah")
+	val id_TR_sampah: Int? = null
+
 	@field:SerializedName("id_pengajuan")
 	val id_pengajuan: Int? = null
+
+	@field:SerializedName("id_sampah")
+	val idSampah: Int? = null
 
 	@field:SerializedName("tanggal_pengajuan")
 	val tanggalPengajuan: String? = null
 
 	@field:SerializedName("status")
 	val status: String? = null
+
+
 }
